@@ -5,12 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- <link rel="stylesheet" href="./assets/css/responsive.css"> -->
     <!-- Reset CSs -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reseter.css/2.0.0/reseter.min.css" integrity="sha512-gCJkkUMGTe73+FMwog6gIBCVJIMXRoc21l6/IPCuzxCex/1sxvO8ctb6Zd4/WWs2UMqmtnDrAdhJht5pEY0LXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- font Icon-->
     <link rel="stylesheet" href="./assets/font/fontawesome-free-5.15.4-web/css/all.min.css">
     <!--Font-->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"> 
+    <link rel="shortcut icon" href="./assets/img/android-chrome-192x192.png" type="image/x-icon"/>
     <title>Document</title>
 </head>
 <body>
@@ -18,7 +21,7 @@
         <div id="header">
             <ul class="header-navigaion__list">
                 <li class="header-navigation__item">
-                  <a href="" class="header-navigation-link">HOME</a>
+                  <a href="#" class="header-navigation-link">HOME</a>
                 </li>
                 <li class="header-navigation__item">
                     <a href="#band" class="header-navigation-link">BAND</a>
@@ -36,19 +39,22 @@
                     </a>
                     <ul class="sub-nav">
                         <li class="header-navigation__item sub-nav__item">
-                            <a href="" class="sub-nav__link">Merchandise</a>
+                            <a href="#" class="sub-nav__link">Merchandise</a>
                         </li>
                         <li class="header-navigation__item sub-nav__item">
-                            <a href="" class="sub-nav__link">Extras</a>
+                            <a href="#" class="sub-nav__link">Extras</a>
                         </li>
                         <li class="header-navigation__item sub-nav__item">
-                            <a href="" class="sub-nav__link">Media</a>
+                            <a href="#" class="sub-nav__link">Media</a>
                         </li>
                     </ul>
                 </li>
             </ul>
             <div class="header-search">
                 <i class="fas fa-search"></i>
+            </div>
+            <div  id="mobile-menu" class="mobile-menu-bar">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
 
@@ -275,6 +281,37 @@
         modalContainer.addEventListener('click', function(event){
             event.stopPropagation()
         })
-    </script>
+
+
+        // JS Mobile Responsive
+        var header = document.getElementById('header')
+        var mobileMenu = document.getElementById('mobile-menu')
+        var headerHeight = header.clientHeight
+        
+        mobileMenu.onclick = function(){
+            var isClosed =  header.clientHeight === headerHeight;
+            if(isClosed){
+                header.style.height = 'auto';
+            }else{
+                header.style.height = null;
+            }
+        }
+        // Tự động đóng khi mở menu
+        var menuItems = document.querySelectorAll('.header-navigaion__list .header-navigation__item a[href*="#"]');
+    
+        for ( var i = 0; i < menuItems.length; i++){
+            var menuItem = menuItems[i];
+
+            menuItem.onclick = function(event){
+                var isParentMenu = this.nextElementSibling && this.nextElementSibling.classList.contains('sub-nav')
+                if(!isParentMenu)  {         
+                    header.style.height = null;
+                }else{
+                    event.preventDefault();
+                }
+            }
+            
+        }
+</script>
 </body>
 </html>
