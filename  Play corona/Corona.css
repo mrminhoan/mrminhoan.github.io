@@ -14,19 +14,12 @@ body{
     align-items: center;
     min-height: 100vh;
     background: #251801;
-    cursor: url('corona.png'),-webkit-grabbing, auto ;
+    cursor: url(corona.png), auto ;
     /* cursor: url(foo.cur), url(http://www.example.com/bar.gif), auto; */
     /* cursor:url(http://www.javascriptkit.com/dhtmltutors/cursor-hand.gif) 10 3, auto; */
     
 }
-.foo{
-    cursor: auto;
-  cursor: url('./corona.png') 4 12, auto;
-}
-.bar  {
-    cursor: pointer;
-    cursor: url(cursor2.png) 2 2, pointer;
-  }
+
 .container{
     position: relative;
     display: flex;
@@ -109,4 +102,13 @@ body{
     bottom: 75px;
     font-size: 3em;
     color: #fff;
+}
+
+@media screen and (max-width: 739px) {
+    .container{
+        flex-wrap: wrap;
+    }
+    .container .face{
+        margin-top: 200px;
+    }
 }
